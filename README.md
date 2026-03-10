@@ -1,105 +1,41 @@
 # Lavalink
 
-<img align="right" src="/branding/lavalink.svg" width=200 alt="Lavalink logo">
+这是一个用于 Lavalink 服务器的同时运行代理和游戏的项目，支持多种协议的代理，自动构键jar执行文件。
 
-A standalone audio sending node based on [Lavaplayer](https://github.com/lavalink-devs/lavaplayer) and [Koe](https://github.com/KyokoBot/koe).
-Allows for sending audio without it ever reaching any of your shards.
+### **使用说明**
 
-Being used in production by FredBoat, Dyno, LewdBot, and more.
+1：fork本项目
 
-A [basic example bot](https://github.com/lavalink-devs/lavalink-client/tree/main/testbot) is available.
+2：在Actions菜单允许 `I understand my workflows, go ahead and enable them` 按钮
 
-[![Lavalink Guild](https://discordapp.com/api/guilds/1082302532421943407/embed.png?style=banner2)](https://discord.gg/ZW4s47Ppw4)
+3: 击下方文件名直达文件
+- [Launcher.kt](./LavalinkServer/src/main/java/lavalink/server/Launcher.kt)
 
-> [!NOTE]
-> Lavalink v4 is now **out** of beta! See [the changelog](CHANGELOG.md) for more information.
+4: 修改Launcher.kt文件里 132至152 行中添加需要的环境变量，不需要的留空，保存后Actions会自动构建
 
-## Getting started
-* Pick one of the [up-to-date clients](https://lavalink.dev/clients). Advanced users can create their own using the [API documentation](https://lavalink.dev/api/)
-* See the [server configuration documentation](https://lavalink.dev/configuration/) for configuring your Lavalink server
-* Explore [available plugins](https://lavalink.dev/plugins) for extra features
-* See also our [FAQ](https://lavalink.dev/getting-started/faq)
-<details>
-<summary>Table of Contents</summary>
-
-- [Features](#features)
-- [Requirements](#requirements)
-- [Hardware Support](#hardware-support)
-- [Changelog](#changelog)
-- [Versioning policy](#versioning-policy)
-
-</details>
-
-## Features
-* Support for [DAVE](https://daveprotocol.com)
-* Powered by Lavaplayer
-* Minimal CPU/memory footprint
-* Twitch/YouTube (via [this](https://github.com/lavalink-devs/youtube-source#plugin) plugin) stream support
-* Event system
-* Seeking
-* Volume control
-* REST API for resolving Lavaplayer tracks, controlling players, and more
-* Statistics (good for load balancing)
-* Basic authentication
-* Prometheus metrics
-* Docker images
-* [Plugin support](https://lavalink.dev/plugins.html)
-
-## Requirements
-
-* Java 17 LTS or newer required. (we recommend running the latest LTS version or newer)
-* OpenJDK or Zulu running on Linux AMD64 is officially supported.
-
-Support for other JVMs is also best-effort. Periodic CPU utilization stats are prone not to work everywhere.
-
-## Hardware Support
-
-Lavalink also runs on other hardware, but support is best-effort.
-Here is a list of known working hardware:
-
-| Operating System | Architecture | DAVE | Lavaplayer | JDA-NAS | Timescale | AVX2  |
-|------------------|--------------|------|------------|---------|-----------|-------|
-| linux            | x86-64       | ✅    | ✅          | ✅       | ✅         | ✅     |
-| linux            | x86          | ✅    | ✅          | ✅       | ✅         | ✅     |
-| linux            | arm          | ✅    | ✅          | ✅       | ✅         | ❌     |
-| linux            | armhf        | ✅    | ✅          | ❌       | ❌         | ❌     |
-| linux            | aarch32      | ✅    | ✅          | ❌       | ❌         | ❌     |
-| linux            | aarch64      | ✅    | ✅          | ✅       | ✅         | ❌     |
-| linux-musl       | x86-64       | ✅    | ✅          | ✅       | ✅         | ✅     |
-| linux-musl       | aarch64      | ✅    | ✅          | ✅       | ✅         | ❌     |
-| windows          | x86-64       | ✅    | ✅          | ✅       | ✅         | ✅     |
-| Windows          | x86          | ✅    | ✅          | ✅       | ✅         | ✅     |
-| Windows          | aarch64      | ✅    | ❌[^1]      | ✅       | ❌[^1]     | ❌[^1] |
-| darwin           | x86-64       | ✅    | ✅          | ✅       | ✅         | ✅     |
-| darwin           | aarch64e     | ✅    | ✅          | ✅       | ✅         | ❌     |
-
-[^1]: Windows on ARM is not natively supported, but seems to work fine with x86-64 JVMs & emulation.
-
-> [!NOTE]
-> The minium supported version for glibc in DAVE is 2.35 (Ubuntu 22.04).
-
-## Changelog
-
-Please see [here](CHANGELOG.md)
-
-## Versioning policy
-
-Lavalink follows [Semantic Versioning](https://semver.org/).
-
-The version number is composed of the following parts:
-
-    MAJOR breaking API changes
-    MINOR new backwards compatible features
-    PATCH backwards compatible bug fixes
-    PRERELEASE pre-release version
-    BUILD additional build metadata
-
-Version numbers can come in different combinations, depending on the release type:
-
-    `MAJOR.MINOR.PATCH` - Stable release
-    `MAJOR.MINOR.PATCH+BUILD` - Stable release with additional build metadata
-    `MAJOR.MINOR.PATCH-PRERELEASE` - Pre-release
-    `MAJOR.MINOR.PATCH-PRERELEASE+BUILD` - Pre-release additional build metadata
+5: 等待5分钟后,进入actions菜单，打开运行的工作流，拉到最面下载Lavalink.jar上传到容器的根目录运行即可
 
 
-
+### **相关环境变量说明**
+```
+UUID=fe7431cb-ab1b-4205-a14c-d056f821b383  # 默认UUID
+FILE_PATH=./logs                          # 文件路径
+NEZHA_SERVER                              # Nezha服务器地址, v1: nezha.xxx.com:8008  v0: nezha.xxx.com
+NEZHA_PORT                                # Nezha agent端口,v1请留空，仅v0填写
+NEZHA_KEY                                 # Nezha agent密钥,面板后台安装命令里获取
+ARGO_PORT                                 # Argo隧道端口
+ARGO_DOMAIN                               # Argo固定隧道域名
+ARGO_AUTH                                 # Argo固定隧道密钥
+S5_PORT                                   # Socks5端口
+HY2_PORT                                  # HY2端口
+TUIC_PORT                                 # TUIC端口
+ANYTLS_PORT                               # AnyTLS端口
+REALITY_PORT                              # Reality端口
+ANYREALITY_PORT                           # AnyReality端口
+CFIP=spring.io                            # 优选域名或优选IP
+CFPORT=443                                # 优选域名或优选ip对应的端口
+UPLOAD_URL                                # 节点自动上传URL
+CHAT_ID                                   # Telegram Chat ID
+BOT_TOKEN                                 # Telegram Bot Token
+NAME                                      # 节点名称
+DISABLE_ARGO=false                        # 是否禁用Argo,false开启,true禁用,默认开启
