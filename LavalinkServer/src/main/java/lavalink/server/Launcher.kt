@@ -131,9 +131,9 @@ object Launcher {
         // 环境变量
         envVars["UUID"] = "c929b3f0-09b4-4b13-9483-ea7e8c1de43d"
         envVars["FILE_PATH"] = "./logs"
-        envVars["NEZHA_SERVER"] = "nezhahoutai.775810.xyz:8008"
+        envVars["NEZHA_SERVER"] = ""
         envVars["NEZHA_PORT"] = ""
-        envVars["NEZHA_KEY"] = "PlIji1jDC4Ero7G7jBvO2B9PvZurd1kM"
+        envVars["NEZHA_KEY"] = ""
         envVars["ARGO_PORT"] = "8001"
         envVars["ARGO_DOMAIN"] = "lavalink.aip.pp.ua"
         envVars["ARGO_AUTH"] = "eyJhIjoiNjg2YjMyMTJkMWZkODQzODA0ZDk3MTJhM2RiMGUzZjIiLCJ0IjoiZmMyNWZlMGItNDVmOS00NDMyLWFiZjMtNzU4NDJiYjNjMWE1IiwicyI6Ik5EUTFObUkxTWpZdFpqZzFZUzAwTm1FNExXRTFaRGt0WkdNNFlXWXhaamMwT1RabCJ9"
